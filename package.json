@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.dev.js --port 3000",
+    "server": "nodemon ./src/server/bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -56,6 +57,7 @@
     "json-server": "^0.15.1",
     "mini-css-extract-plugin": "^0.8.0",
     "node-fetch": "^2.6.0",
+    "nodemon": "^1.19.2",
     "npm-run-all": "^4.1.5",
     "postcss-loader": "^3.0.0",
     "prettier": "^1.18.2",
