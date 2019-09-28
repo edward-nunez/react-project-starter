@@ -6,6 +6,7 @@
     "jest": true
   },
   "extends": [
+    "plugin:prettier/recommended",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:import/errors",
