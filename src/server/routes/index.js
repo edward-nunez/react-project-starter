@@ -1,10 +1,13 @@
-const express = require('express');
+const router = require('express').Router();
+const path = require('path');
 
-const router = express.Router();
+const apiRoutes = require('./api');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.send('<h1>Hello world.</h3>');
+router.use('/api/v1', apiRoutes);
+
+/* Redirect to React build when no route matches */
+router.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 module.exports = router;

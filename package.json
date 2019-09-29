@@ -4,9 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.dev.js --port 3000",
-    "server": "nodemon ./src/server/bin/www",
-    "test": "jest --watch"
+    "start": "npx pm2 start src/server/bin/www",
+    "start:dev-client": "webpack-dev-server --config webpack.config.dev.js --port 3000",
+    "start:dev-server": "nodemon ./src/server/bin/www",
+    "test": "jest --watch",
+    "test:ci": "jest",
+    "clean:build": "rimraf ./src/server/public && mkdir ./src/server/public",
+    "prebuild": "concurrently \"npm run clean:build\"  \"npm run test:ci\" ",
+    "build": "webpack --config webpack.config.prod.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +30,7 @@
     "helmet": "^3.21.1",
     "immer": "^4.0.0",
     "morgan": "^1.9.1",
+    "pm2": "^3.5.1",
     "prop-types": "^15.7.2",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
@@ -39,6 +45,7 @@
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "babel-preset-react-app": "^9.0.2",
+    "concurrently": "^4.1.2",
     "css-loader": "^3.2.0",
     "cssnano": "^4.1.10",
     "enzyme": "^3.10.0",
@@ -56,7 +63,6 @@
     "mini-css-extract-plugin": "^0.8.0",
     "node-fetch": "^2.6.0",
     "nodemon": "^1.19.2",
-    "npm-run-all": "^4.1.5",
     "postcss-loader": "^3.0.0",
     "prettier": "^1.18.2",
     "react-test-renderer": "^16.10.0",
